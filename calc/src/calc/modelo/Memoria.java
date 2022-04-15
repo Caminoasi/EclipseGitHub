@@ -1,10 +1,10 @@
 package calc.modelo;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Memoria {
 
+	// CriaÃ§Ã£o de enum p/ armazenarar o tipo de operaÃ§Ã£o
 	private enum TipoComando {
 		ZERAR, SINAL, NUMERO, DIV, MULTI, SUBI, SOMA, IGUAL, VIRGULA;
 	}
@@ -19,14 +19,14 @@ public class Memoria {
 
 	}
 
-	// Criar o método para adicionar observadores
+	// Criar o mÃ©todo para adicionar observadores
 	private final List<MemoriaObservador> observadores = new ArrayList<>();
 
 	public void adicionarObservadores(MemoriaObservador observador) {
 		observadores.add(observador);
 	}
 
-	// Chamado para registro de número
+	// Chamado para registro de nÃºmero
 	public static Memoria getInstancia() {
 		return instancia;
 	}
@@ -35,7 +35,7 @@ public class Memoria {
 		return textoAtual.isEmpty() ? "0" : textoAtual;
 	}
 
-	// Alterar o número
+	// Alterar o nÃºmero
 	public void processadorComando(String texto) {
 		TipoComando tipoComando = detectarTipoComando(texto);
 		if (tipoComando == null) {
@@ -91,7 +91,7 @@ public class Memoria {
 			Integer.parseInt(texto);
 			return TipoComando.NUMERO;
 		} catch (NumberFormatException e) {
-			// Quando não for Número
+			// Quando nÃ£o for NÃºmero
 			if ("AC".equals(texto)) {
 				return TipoComando.ZERAR;
 			} else if ("*".equals(texto)) {
@@ -106,7 +106,7 @@ public class Memoria {
 				return TipoComando.VIRGULA;
 			} else if ("=".equals(texto)) {
 				return TipoComando.IGUAL;
-			} else if ("±".equals(texto)) {
+			} else if ("Â±".equals(texto)) {
 				return TipoComando.SINAL;
 			}
 		}
